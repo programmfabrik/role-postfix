@@ -25,7 +25,6 @@
     mode: 0640
   with_items:
     - etc/postfix/sasl-passwords
-    - etc/postfix/sender-canonical-maps
     - etc/postfix/sender-canonical-maps-regex
   loop_control:
     loop_var: postfix_postmap_tpl_item

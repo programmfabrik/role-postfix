@@ -1,18 +1,11 @@
 ---
 postfix_enabled: no
 postfix_helpers_enabled: no
-postfix_relayhost_maps:
-  - name: "{{ postfix_default_sender_email }}"
-    target: "[{{ postfix_default_sender_server }}]:{{ postfix_default_sender_server_port }}"
-postfix_sasl_passwords:
-  - name: "{{ postfix_default_sender_email }}"
-    target: "{{ postfix_default_sender_user }}:{{ postfix_default_sender_password }}"
-postfix_sender_canonical_maps:
-  - name: "root"
-    target: "{{ postfix_default_sender_email }}"
+postfix_sasl_auth: ''
+postfix_sender_domains: []
 postfix_aliases:
   - name: root
-    target: "{{postfix_default_monitoring_recipient }}"
+    target: "{{ postfix_default_monitoring_recipient }}"
 postfix_maximal_queue_lifetime: 1d
 postfix_bounce_queue_lifetime: 1d
 postfix_bounce_notice_recipient: False

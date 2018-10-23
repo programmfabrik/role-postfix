@@ -2,9 +2,8 @@
 - name: postmap postfix
   command: "postmap {{ postfix_tpl_item }}"
   with_items:
-    - '/etc/postfix/relayhost-maps'
     - '/etc/postfix/sasl-passwords'
-    - '/etc/postfix/sender-canonical-maps'
+    - '/etc/postfix/sender-canonical-maps-regex'
   loop_control:
     loop_var: postfix_tpl_item
   notify:

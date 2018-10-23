@@ -15,12 +15,15 @@
     postfix_enabled: yes
     postfix_helpers_enabled: yes
     postfix_relayhost: '[192.168.99.56]:587'
+    postfix_sender_domains:
+      - "{{ inventory_hostname }}"
+      - foo
     postfix_default_sender_email: "server@example.com"
-    postfix_default_sender_user: "ServerExampleCom"
-    postfix_default_sender_password: "verylongpassword"
+    postfix_sasl_auth: "username:verylongpassword"
     postfix_default_sender_server: "smtp.gmail.com"
     postfix_default_sender_server_port: "587"
     postfix_default_monitoring_recipient: "monitoring-alerts@exampe.com"
     postfix_bounce_notice_recipient: no
+
   roles:
     - role: role-postfix

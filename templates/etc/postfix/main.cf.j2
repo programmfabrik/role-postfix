@@ -42,6 +42,6 @@ relayhost = {{ postfix_relayhost }}
 {% endif %}
 
 ## Address Mangling
-sender_canonical_maps = hash:/etc/postfix/sender-canonical-maps, regexp:/etc/postfix/sender-canonical-maps-regex
+sender_canonical_maps = regexp:/etc/postfix/sender-canonical-maps-regex
 alias_maps = hash:/etc/aliases
 alias_database = hash:/etc/aliases

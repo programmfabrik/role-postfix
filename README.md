@@ -19,8 +19,6 @@ with a Postfix background.
 - hosts: mx-relays
   vars:
     postfix_default_sender_email: "server@example.com"
-    postfix_default_sender_user: "ServerExampleCom"
-    postfix_default_sender_password: "verylongpassword"
     postfix_default_sender_server: "smtp.gmail.com"
     postfix_default_sender_server_port: "587"
     postfix_default_monitoring_recipient: "monitoring-alerts@exampe.com"
@@ -28,36 +26,23 @@ with a Postfix background.
     # Set to False to disable or to 'mail@example.com' to receive bounce mails
     postfix_bounce_notice_recipient: False
     
-    # Sending address to sending server association
-    postfix_relayhost_maps:
-      - name: "{{ postfix_default_sender_email }}"
-        target: "[{{ postfix_default_sender_server }}]:{{ postfix_default_sender_server_port }}"
-      - name: "example@gmail.com"
-        target: "[smtp.gmail.com]:587"
+    # Mail relay configuration (optional)
+    postfix_relayhost: '[192.168.99.56]:587'
+
+    # Authentication with user:password on mail relay (optional)
+    postfix_sasl_auth: 'username:password'
     
-    # Sending address - user:password association
-    postfix_sasl_passwords:
-      - name: "{{ postfix_default_sender_email }}"
-        target: "{{ postfix_default_sender_user }}:{{ postfix_default_sender_password }}"
-      - name: "subscribe@example.com"
-        target: "SubscribeExampleCom:secretpass"
+    # Rewriting all sender addresses of given domains
+    postfix_sender_domains:
+      - "{{ inventory_hostname }}"
+      - "{{ inventory_hostname_shorts }}"
+      - example.com
     
-    # Sending Linux user - sender address rewriting, http://www.postfix.org/ADDRESS_REWRITING_README.html
-    postfix_sender_canonical_maps:
-      # Note that it "seems" possible to rewrite every account using a regex like:
-      # /etc/postfix/sender-canonical-maps.regex
-      # /.*/    masqueraded@example.com
-      # However this calls for some unexpected behavior and loops with mails to fo@bar.comcom and so on, so I don't recommend it
-      - name: "root"
-        target: "{{ postfix_default_sender_email }}"
-      - name: "www_example_com"
-        target: "{{ postfix_default_sender_email }}"
-    
-    # When those linux users receive
+    # Setting aliases
     postfix_aliases:
       # Relay mails to the root use to the default_monitoring_recipient
       - name: root
-        target: "{{postfix_default_monitoring_recipient }}"
+        target: "{{ postfix_default_monitoring_recipient }}"
 
   roles:
     - programmfabrik.role-postfix
