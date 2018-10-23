@@ -15,7 +15,7 @@ bounce_notice_recipient = {{ postfix_bounce_notice_recipient }}
 ## SMTP Settings
 smtp_sender_dependent_authentication = no
 smtp_sasl_auth_enable = yes
-smtp_sasl_mechanism_filter = digest-md5, plain, login
+smtp_sasl_mechanism_filter = {{ postfix_smtp_sasl_mechanism_filter }}
 smtp_sasl_security_options = noanonymous
 smtp_sasl_password_maps = hash:/etc/postfix/sasl-passwords
 {% if postfix_enforce_tls %}
