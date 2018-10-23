@@ -8,7 +8,7 @@ append_dot_mydomain = no
 maximal_queue_lifetime = {{ postfix_maximal_queue_lifetime }}
 bounce_queue_lifetime = {{ postfix_bounce_queue_lifetime }}
 smtpd_relay_restrictions = permit_mynetworks permit_sasl_authenticated defer_unauth_destination
-{%- if postfix_bounce_notice_recipient %}
+{% if postfix_bounce_notice_recipient %}
 bounce_notice_recipient = {{ postfix_bounce_notice_recipient }}
 {% endif %}
 
@@ -29,18 +29,19 @@ smtp_tls_mandatory_ciphers = medium
 smtp_tls_mandatory_protocols = !SSLv2, !TLSv1
 {% endif %}
 
-## Hostname settings
+## Hostname Settings
 myhostname = {{ inventory_hostname }}
 myorigin = /etc/mailname
 mydestination = {{ inventory_hostname }}, {{ inventory_hostname_short }}, localhost.localdomain, localhost
+
+## Network
 mynetworks = 127.0.0.0/8
 inet_interfaces = 127.0.0.1
-
-## Relayhost settings
-sender_canonical_maps = hash:/etc/postfix/sender-canonical-maps, regexp:/etc/postfix/sender-canonical-maps-regex
-{%- if postfix_relayhost %}
+{% if postfix_relayhost %}
 relayhost = {{ postfix_relayhost }}
 {% endif %}
 
+## Address Mangling
+sender_canonical_maps = hash:/etc/postfix/sender-canonical-maps, regexp:/etc/postfix/sender-canonical-maps-regex
 alias_maps = hash:/etc/aliases
 alias_database = hash:/etc/aliases
