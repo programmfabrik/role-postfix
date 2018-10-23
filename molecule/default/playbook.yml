@@ -11,4 +11,4 @@
 - name: Converge
   hosts: all
   roles:
-    - role: role-mailrelay
+    - role: role-postfix

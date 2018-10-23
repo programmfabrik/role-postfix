@@ -1,5 +1,5 @@
 {{ ansible_managed | comment }}
 
-{% for relayhost_item in mailrelay_relayhost_maps %}
+{% for relayhost_item in postfix_relayhost_maps %}
 {{ relayhost_item.name }} {{ relayhost_item.target }}
 {% endfor %}

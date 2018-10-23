@@ -14,7 +14,7 @@
     value: '{{ inventory_hostname }}'
 
 - name: install helpers
-  when: mailrelay_helpers_enabled
+  when: postfix_helpers_enabled
   apt:
     pkg: mailutils
     state: installed
@@ -23,10 +23,10 @@
 
 - name: install postfix packages
   apt:
-    pkg: "{{ mailrelay_package }}"
+    pkg: "{{ postfix_package }}"
     state: installed
   with_items:
     - postfix
     - libsasl2-modules
   loop_control:
-    loop_var: mailrelay_package
+    loop_var: postfix_package

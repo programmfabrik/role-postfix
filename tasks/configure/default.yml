@@ -7,19 +7,19 @@
     group: root
     mode: 0644
   notify:
-    - mailrelay reload postfix
+    - reload postfix
 
 - name: template /etc/postfix/main.cf
   template:
     src: "etc/postfix/main.cf.j2"
     dest: "/etc/postfix/main.cf"
   notify:
-    - mailrelay reload postfix
+    - reload postfix
 
 - name: template the postmap files
   template:
-    src: "{{ mailrelay_postmap_tpl_item }}.j2"
-    dest: "/{{ mailrelay_postmap_tpl_item }}"
+    src: "{{ postfix_postmap_tpl_item }}.j2"
+    dest: "/{{ postfix_postmap_tpl_item }}"
     owner: root
     group: root
     mode: 0640
@@ -29,16 +29,16 @@
     - etc/postfix/sender-canonical-maps
     - etc/postfix/sender-canonical-maps-regex
   loop_control:
-    loop_var: mailrelay_postmap_tpl_item
+    loop_var: postfix_postmap_tpl_item
   notify:
-    - mailrelay postmap postfix
+    - postmap postfix
 
 - name: template the /etc/aliases file
   lineinfile:
     path: /etc/aliases
     regexp: '^{{ alias_item.name }}: '
     line: '{{ alias_item.name }}: {{ alias_item.target }}'
-  with_items: '{{ mailrelay_aliases }}'
+  with_items: '{{ postfix_aliases }}'
   loop_control:
     loop_var: alias_item
-  notify: mailrelay newaliases
+  notify: newaliases

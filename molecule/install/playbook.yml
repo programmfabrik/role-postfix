@@ -12,14 +12,14 @@
   hosts: all
   become: yes
   vars:
-    mailrelay_enabled: yes
-    mailrelay_helpers_enabled: yes
-    mailrelay_default_sender_email: "server@example.com"
-    mailrelay_default_sender_user: "ServerExampleCom"
-    mailrelay_default_sender_password: "verylongpassword"
-    mailrelay_default_sender_server: "smtp.gmail.com"
-    mailrelay_default_sender_server_port: "587"
-    mailrelay_default_monitoring_recipient: "monitoring-alerts@exampe.com"
-    mailrelay_bounce_notice_recipient: no
+    postfix_enabled: yes
+    postfix_helpers_enabled: yes
+    postfix_default_sender_email: "server@example.com"
+    postfix_default_sender_user: "ServerExampleCom"
+    postfix_default_sender_password: "verylongpassword"
+    postfix_default_sender_server: "smtp.gmail.com"
+    postfix_default_sender_server_port: "587"
+    postfix_default_monitoring_recipient: "monitoring-alerts@exampe.com"
+    postfix_bounce_notice_recipient: no
   roles:
-    - role: role-mailrelay
+    - role: role-postfix

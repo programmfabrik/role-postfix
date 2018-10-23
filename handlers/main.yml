@@ -1,5 +1,5 @@
 ---
-- name: mailrelay postmap postfix
+- name: postmap postfix
   command: "postmap {{ postfix_tpl_item }}"
   with_items:
     - '/etc/postfix/relayhost-maps'
@@ -8,12 +8,12 @@
   loop_control:
     loop_var: postfix_tpl_item
   notify:
-    - mailrelay newaliases
+    - newaliases
 
-- name: mailrelay newaliases
+- name: newaliases
   command: newaliases
 
-- name: mailrelay reload postfix
+- name: reload postfix
   service:
     name: postfix
     state: reloaded

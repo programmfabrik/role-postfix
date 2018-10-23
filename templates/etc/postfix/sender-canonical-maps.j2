@@ -1,6 +1,6 @@
 {{ ansible_managed | comment }}
 
-{% for sender_can_maps_item in mailrelay_sender_canonical_maps %}
+{% for sender_can_maps_item in postfix_sender_canonical_maps %}
 {{ sender_can_maps_item.name }} {{ sender_can_maps_item.target }}
 {{ sender_can_maps_item.name }}@{{ inventory_hostname_short }} {{ sender_can_maps_item.target }}
 {{ sender_can_maps_item.name }}@{{ inventory_hostname }} {{ sender_can_maps_item.target }}

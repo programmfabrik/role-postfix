@@ -1,10 +1,10 @@
-# Ansible Role postfix mailrelay
+# Ansible Role postfix
 
-This role installs and configures a postfix mailrelay.
+This role installs and configures a postfix that send but not receives e-mails.
 
 Ofter times, applications or services will want to send out e-mails.
 This role will configure any such server to queue mails locally and then
-forwarding them to any specific mail-relay.
+forwarding them to one mail-relay or directly send it to the next hop towards the sender.
 
 This way, applications and services on such a configured instance don't
 require any special send/relay/bounce logic and can simply use mail-drop
@@ -18,49 +18,49 @@ with a Postfix background.
 ```yaml
 - hosts: mx-relays
   vars:
-    mailrelay_default_sender_email: "server@example.com"
-    mailrelay_default_sender_user: "ServerExampleCom"
-    mailrelay_default_sender_password: "verylongpassword"
-    mailrelay_default_sender_server: "smtp.gmail.com"
-    mailrelay_default_sender_server_port: "587"
-    mailrelay_default_monitoring_recipient: "monitoring-alerts@exampe.com"
+    postfix_default_sender_email: "server@example.com"
+    postfix_default_sender_user: "ServerExampleCom"
+    postfix_default_sender_password: "verylongpassword"
+    postfix_default_sender_server: "smtp.gmail.com"
+    postfix_default_sender_server_port: "587"
+    postfix_default_monitoring_recipient: "monitoring-alerts@exampe.com"
     
     # Set to False to disable or to 'mail@example.com' to receive bounce mails
-    mailrelay_bounce_notice_recipient: False
+    postfix_bounce_notice_recipient: False
     
     # Sending address to sending server association
-    mailrelay_relayhost_maps:
-      - name: "{{ mailrelay_default_sender_email }}"
-        target: "[{{ mailrelay_default_sender_server }}]:{{ mailrelay_default_sender_server_port }}"
+    postfix_relayhost_maps:
+      - name: "{{ postfix_default_sender_email }}"
+        target: "[{{ postfix_default_sender_server }}]:{{ postfix_default_sender_server_port }}"
       - name: "example@gmail.com"
         target: "[smtp.gmail.com]:587"
     
     # Sending address - user:password association
-    mailrelay_sasl_passwords:
-      - name: "{{ mailrelay_default_sender_email }}"
-        target: "{{ mailrelay_default_sender_user }}:{{ mailrelay_default_sender_password }}"
+    postfix_sasl_passwords:
+      - name: "{{ postfix_default_sender_email }}"
+        target: "{{ postfix_default_sender_user }}:{{ postfix_default_sender_password }}"
       - name: "subscribe@example.com"
         target: "SubscribeExampleCom:secretpass"
     
     # Sending Linux user - sender address rewriting, http://www.postfix.org/ADDRESS_REWRITING_README.html
-    mailrelay_sender_canonical_maps:
+    postfix_sender_canonical_maps:
       # Note that it "seems" possible to rewrite every account using a regex like:
       # /etc/postfix/sender-canonical-maps.regex
       # /.*/    masqueraded@example.com
       # However this calls for some unexpected behavior and loops with mails to fo@bar.comcom and so on, so I don't recommend it
       - name: "root"
-        target: "{{ mailrelay_default_sender_email }}"
+        target: "{{ postfix_default_sender_email }}"
       - name: "www_example_com"
-        target: "{{ mailrelay_default_sender_email }}"
+        target: "{{ postfix_default_sender_email }}"
     
     # When those linux users receive
-    mailrelay_aliases:
+    postfix_aliases:
       # Relay mails to the root use to the default_monitoring_recipient
       - name: root
-        target: "{{mailrelay_default_monitoring_recipient }}"
+        target: "{{postfix_default_monitoring_recipient }}"
 
   roles:
-    - blunix.role-mailrelay
+    - programmfabrik.role-postfix
 ```
 
 # License

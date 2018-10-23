@@ -1,6 +1,6 @@
 ---
-- include_tasks: mailrelay.yml
-  when: mailrelay_enabled
+- include_tasks: postfix.yml
+  when: postfix_enabled
   tags:
     - postfix
     - mail

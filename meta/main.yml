@@ -8,9 +8,6 @@ galaxy_info:
   - name: Debian
     versions:
     - jessie
-  - name: Ubuntu
-    versions:
-    - Xenial
 
   galaxy_tags:
   - blunix
