@@ -24,7 +24,6 @@
     group: root
     mode: 0640
   with_items:
-    - etc/postfix/relayhost-maps
     - etc/postfix/sasl-passwords
     - etc/postfix/sender-canonical-maps
     - etc/postfix/sender-canonical-maps-regex

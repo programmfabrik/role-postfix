@@ -38,6 +38,9 @@ inet_interfaces = 127.0.0.1
 
 ## Relayhost settings
 sender_canonical_maps = hash:/etc/postfix/sender-canonical-maps, regexp:/etc/postfix/sender-canonical-maps-regex
-sender_dependent_relayhost_maps = hash:/etc/postfix/relayhost-maps
+{%- if postfix_relayhost %}
+relayhost = {{ postfix_relayhost }}
+{% endif %}
+
 alias_maps = hash:/etc/aliases
 alias_database = hash:/etc/aliases

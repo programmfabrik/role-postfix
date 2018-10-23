@@ -17,16 +17,11 @@
   when: postfix_helpers_enabled
   apt:
     pkg: mailutils
-    state: installed
+    state: present
   tags:
     - helper
 
 - name: install postfix packages
   apt:
-    pkg: "{{ postfix_package }}"
-    state: installed
-  with_items:
-    - postfix
-    - libsasl2-modules
-  loop_control:
-    loop_var: postfix_package
+    pkg: ['postfix', 'libsasl2-modules']
+    state: present
