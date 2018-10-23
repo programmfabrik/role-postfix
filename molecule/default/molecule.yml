@@ -17,7 +17,7 @@ provisioner:
   lint:
     name: ansible-lint
 scenario:
-  name: install
+  name: default
 verifier:
   name: testinfra
   lint:
