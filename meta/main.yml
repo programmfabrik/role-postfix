@@ -1,6 +1,6 @@
 galaxy_info:
-  author: Peter Thurner
-  company: Blunix GmbH
+  author: Klaus Thorn
+  company: programmfabrik GmbH
   license: Apache
   min_ansible_version: 1.6
 
