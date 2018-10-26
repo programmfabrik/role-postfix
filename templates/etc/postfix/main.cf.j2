@@ -35,8 +35,8 @@ myorigin = /etc/mailname
 mydestination = {{ inventory_hostname }}, {{ inventory_hostname_short }}, localhost.localdomain, localhost
 
 ## Network
-mynetworks = 127.0.0.0/8
-inet_interfaces = 127.0.0.1
+mynetworks = {{ postfix_my_networks }}
+inet_interfaces = {{ postfix_inet_interfaces }}
 {% if postfix_relayhost %}
 relayhost = {{ postfix_relayhost }}
 {% endif %}
