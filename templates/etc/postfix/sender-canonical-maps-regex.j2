@@ -1,5 +1,5 @@
 {{ ansible_managed | comment }}
 
 {% for item in postfix_sender_domains %}
-/^(.*@){{ item }}$/     {{ postfix_default_sender_email }}
+/^(.*@){{ item }}$/           {{ postfix_default_sender_email }}
 {% endfor %}

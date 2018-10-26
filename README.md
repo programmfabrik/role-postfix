@@ -18,6 +18,7 @@ with a Postfix background.
 ```yaml
 - hosts: mx-relays
   vars:
+    postfix_debconf_mailname: host123.example.com
     postfix_default_sender_email: "server@example.com"
     postfix_default_monitoring_recipient: "monitoring-alerts@exampe.com"
     
