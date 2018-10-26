@@ -1,0 +1,14 @@
+- name: check that postfix_mailname is set
+  when: postfix_mailname == ''
+  fail:
+    msg: Please define the variable postfix_mailname!
+
+- name: check that postfix_myhostname is set
+  when: postfix_myhostname == ''
+  fail:
+    msg: Please define the variable postfix_myhostname!
+
+- name: check that postfix_mydestination is set
+  when: postfix_mydestination == ''
+  fail:
+    msg: Please define the variable postfix_mydestination!

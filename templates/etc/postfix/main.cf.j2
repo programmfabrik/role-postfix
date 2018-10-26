@@ -30,9 +30,9 @@ smtp_tls_mandatory_protocols = !SSLv2, !TLSv1
 {% endif %}
 
 ## Hostname Settings
-myhostname = {{ inventory_hostname }}
+myhostname = {{ postfix_myhostname }}
 myorigin = /etc/mailname
-mydestination = {{ inventory_hostname }}, {{ inventory_hostname_short }}, localhost.localdomain, localhost
+mydestination = {{ postfix_mydestination }}
 
 ## Network
 mynetworks = {{ postfix_my_networks }}
