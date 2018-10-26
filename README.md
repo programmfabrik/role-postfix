@@ -19,8 +19,6 @@ with a Postfix background.
 - hosts: mx-relays
   vars:
     postfix_default_sender_email: "server@example.com"
-    postfix_default_sender_server: "smtp.gmail.com"
-    postfix_default_sender_server_port: "587"
     postfix_default_monitoring_recipient: "monitoring-alerts@exampe.com"
     
     # Set to False to disable or to 'mail@example.com' to receive bounce mails

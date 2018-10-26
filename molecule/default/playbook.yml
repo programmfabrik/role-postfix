@@ -20,8 +20,6 @@
       - foo
     postfix_default_sender_email: "server@example.com"
     postfix_sasl_auth: "username:verylongpassword"
-    postfix_default_sender_server: "smtp.gmail.com"
-    postfix_default_sender_server_port: "587"
     postfix_default_monitoring_recipient: "monitoring-alerts@exampe.com"
     postfix_bounce_notice_recipient: no
 
