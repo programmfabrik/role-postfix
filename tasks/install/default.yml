@@ -4,19 +4,19 @@
     name: postfix
     question: postfix/main_mailer_type
     vtype: string
-    value: "{{ postfix_debconf_mailer_type }}"
+    value: "{{ postfix_mailer_type }}"
 
-- name: check that postfix_debconf_mailname is set
-  when: postfix_debconf_mailname == ''
+- name: check that postfix_mailname is set
+  when: postfix_mailname == ''
   fail:
-    msg: Please define the variable postfix_debconf_mailname!
+    msg: Please define the variable postfix_mailname!
   
 - name: set debconf mailname
   debconf:
     name: postfix
     question: postfix/mailname
     vtype: string
-    value: "{{ postfix_debconf_mailname }}"
+    value: "{{ postfix_mailname }}"
 
 - name: install helpers
   when: postfix_helpers_enabled

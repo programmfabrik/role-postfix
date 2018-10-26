@@ -1,8 +1,8 @@
 ---
 - name: template /etc/mailname
-  lineinfile:
-    line: "{{ inventory_hostname }}"
-    path: /etc/mailname
+  template:
+    src: "etc/mailname"
+    dest: "/etc/mailname"
     owner: root
     group: root
     mode: 0644

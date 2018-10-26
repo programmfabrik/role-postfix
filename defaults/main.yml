@@ -1,7 +1,7 @@
 postfix_enabled: yes
 postfix_debconf_mailer_type: Satellite system
               # alternative: Internet Site
-postfix_debconf_mailname: ''
+postfix_mailname: ''
 postfix_helpers_enabled: no
 postfix_sasl_auth: ''
 postfix_sender_domains: []
