@@ -12,14 +12,16 @@
   hosts: all
   become: yes
   vars:
-    postfix_enabled: yes
+    postfix_mailname: mailname.example.com
+    postfix_myhostname: satellite.example.com
+    postfix_mydestination: localhost
     postfix_helpers_enabled: yes
-    postfix_relayhost: '[192.168.99.56]:587'
+    postfix_relayhost: '[192.168.100.1]:587'
     postfix_sender_domains:
       - "{{ inventory_hostname }}"
       - foo
-    postfix_default_sender_email: "server@example.com"
-    postfix_sasl_auth: "username:verylongpassword"
+    postfix_default_sender_email: "sender@example.com"
+    postfix_sasl_auth: "authname:password"
     postfix_default_monitoring_recipient: "monitoring-alerts@exampe.com"
     postfix_bounce_notice_recipient: no
 
