@@ -16,3 +16,4 @@ postfix_smtp_sasl_mechanism_filter: digest-md5, plain, login
 postfix_relayhost: ''
 postfix_my_networks: 127.0.0.0/8
 postfix_inet_interfaces: 127.0.0.1
+postfix_inet_protocols: ipv4
