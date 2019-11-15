@@ -12,6 +12,7 @@ postfix_maximal_queue_lifetime: 1d
 postfix_bounce_queue_lifetime: 1d
 postfix_bounce_notice_recipient: False
 postfix_enforce_tls: False
+postfix_restrict_tls_protocols: True
 postfix_smtp_tls_wrappermode: "yes"
 postfix_smtp_sasl_mechanism_filter: digest-md5, plain, login
 postfix_relayhost: ''

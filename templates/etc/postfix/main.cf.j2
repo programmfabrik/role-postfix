@@ -26,7 +26,9 @@ smtp_tls_session_cache_database = btree:${data_directory}/smtp_scache
 smtp_tls_wrappermode = {{ postfix_smtp_tls_wrappermode }}
 smtp_tls_security_level = encrypt
 smtp_tls_mandatory_ciphers = medium
+{% if postfix_restrict_tls_protocols %}
 smtp_tls_mandatory_protocols = !SSLv2, !TLSv1
+{% endif %}
 {% endif %}
 
 ## Hostname Settings
