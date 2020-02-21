@@ -1,0 +1,29 @@
+- name: create docker0.target
+  copy:
+    dest: "/etc/systemd/system/docker0.target"
+    content: |
+      [Unit]
+      Description=target is active if docker network interface is available
+      Requires=sys-subsystem-net-devices-docker0.device
+      After=sys-subsystem-net-devices-docker0.device
+
+- name: create postfix@- override directory
+  file:
+    path: "/etc/systemd/system/postfix@-.service.d"
+    state: directory
+
+- name: create postfix@- override file
+  copy:
+    dest: "/etc/systemd/system/postfix@-.service.d/override.conf"
+    content: |
+      [Unit]
+      After=docker0.target
+      Requires=docker0.target
+
+- name: restart postfix
+  systemd:
+    state: restarted
+    daemon_reload: yes
+    name: postfix.service
+
+
