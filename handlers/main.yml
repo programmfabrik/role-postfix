@@ -16,3 +16,9 @@
   service:
     name: postfix
     state: restarted
+
+- name: daemon-reload & restart postfix
+  systemd:
+  - state: restartet
+  - daemon-reload: yes
+  - name: postfix

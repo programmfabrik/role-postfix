@@ -6,24 +6,16 @@
       Description=target is active if docker network interface is available
       Requires=sys-subsystem-net-devices-docker0.device
       After=sys-subsystem-net-devices-docker0.device
+  - notify: daemon-reload & restart postfix 
 
-- name: create postfix@- override directory
+- name: create postfix@- override
   file:
     path: "/etc/systemd/system/postfix@-.service.d"
     state: directory
-
-- name: create postfix@- override file
   copy:
     dest: "/etc/systemd/system/postfix@-.service.d/override.conf"
     content: |
       [Unit]
       After=docker0.target
       Requires=docker0.target
-
-- name: restart postfix
-  systemd:
-    state: restarted
-    daemon_reload: yes
-    name: postfix.service
-
-
+  - notify: daemon-reload & restart postfix 
