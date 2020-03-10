@@ -19,6 +19,6 @@
 
 - name: daemon-reload & restart postfix
   systemd:
-  - state: restartet
-  - daemon-reload: yes
-  - name: postfix
+    state: restartet
+    daemon_reload: yes
+    name: postfix
