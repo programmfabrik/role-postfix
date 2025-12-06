@@ -40,3 +40,9 @@
   loop_control:
     loop_var: alias_item
   notify: newaliases
+
+- name: configure aliases
+  ansible.builtin.lineinfile:
+    path: /etc/aliases
+    regexp: '^(news|usenet|ftp|noc|nobody): root'
+    state: absent
